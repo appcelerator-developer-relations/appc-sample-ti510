@@ -1,0 +1,19 @@
+<Alloy>
+
+	<!-- 
+	The module-attribute will result in require('xp.ui').createNavigationWindow()
+	See app/lib/xp.ui.js for how we use this to emulate the iOS-only NavigationWindow for Android
+	-->
+	<NavigationWindow id="navWin" module="xp.ui">
+
+	    <Window title="Samples">
+	        <ListView onItemclick="onListViewItemclick">
+	            <ListSection>
+	                <ListItem platform="android" itemId="cardview" title="CardView" />
+	                <ListItem platform="ios" itemId="ios" title="iOS APIs" />
+	            </ListSection>
+	        </ListView>
+	    </Window>
+	    
+	</NavigationWindow>
+</Alloy>

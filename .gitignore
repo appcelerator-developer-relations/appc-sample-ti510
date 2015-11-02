@@ -1,0 +1,13 @@
+_assets
+.DS_Store
+Resources
+build.log
+build
+npm-debug.log
+tmp
+.map
+.project
+.settings
+Thumbs.db
+extensions/Ti 5.0.0/Ti 5.0.0.xcodeproj/xcuserdata
+extensions/Ti 5.0.0/Ti 5.0.0.xcodeproj/project.xcworkspace

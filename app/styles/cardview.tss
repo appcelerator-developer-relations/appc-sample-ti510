@@ -1,0 +1,53 @@
+'Window': {
+	backgroundColor: '#eee'
+}
+
+'CardView': {
+	top: 20,
+
+	// Width defaults to Ti.UI.SIZE
+	// This will fill with some margin left and right
+	left: 20,
+	right: 20,
+
+	// How to do more complex card layouts (see android docs)
+
+	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19798
+	contentPadding: 40,
+
+	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19798
+	cardCornerRadius: 20
+}
+
+'Label': {
+	color: '#000'
+}
+
+'.help': {
+	left: 25,
+	right: 25
+}
+
+'.last': {
+	bottom: 20, // add some margin
+
+	// default, but required if we set both top and bottom or the view
+	// will grow to the absolute (!) bottom of its parent
+	height: Ti.UI.SIZE
+}
+
+'#cardElevation': {
+	cardBackgroundColor: '#777'
+}
+
+'#cardElevationLabel': {
+	color: 'white'
+}
+
+'#cardMaxElevation': {
+	cardBackgroundColor: '#777'
+}
+
+'#cardMaxElevationLabel': {
+	color: 'white'
+}
