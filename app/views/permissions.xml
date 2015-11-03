@@ -1,4 +1,17 @@
 <Alloy>
-	<View class="container">
-	</View>
+	<Window title="Device Permissions">
+
+		<ScrollView layout="vertical">
+
+			<Button onClick="calendar">Ti.Calendar</Button>
+
+			<Button onClick="contacts">Ti.Contacts</Button>
+
+			<Button onClick="geolocation">Ti.Geolocation</Button>
+
+			<Button onClick="media">Ti.Media</Button>
+
+		</ScrollView>
+
+	</Window>
 </Alloy>

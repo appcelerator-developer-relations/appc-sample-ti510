@@ -9,6 +9,7 @@
 	    <Window title="Samples">
 	        <ListView onItemclick="onListViewItemclick">
 	            <ListSection>
+	            	<ListItem platform="ios,android" itemId="permissions" title="Device Permissions" />
 	                <ListItem platform="android" itemId="cardview" title="CardView" />
 	                <ListItem platform="ios" itemId="ios" title="iOS APIs" />
 	            </ListSection>
