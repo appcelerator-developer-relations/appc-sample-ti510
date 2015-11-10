@@ -1,3 +1,8 @@
-'NavigationWindow': {
-	swipeBack: false
+'Label': {
+
+	// Add some margin left and right
+	left: 20,
+	right: 20,
+
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }

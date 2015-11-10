@@ -36,7 +36,7 @@
         <key>UIStatusBarStyle</key>
         <string>UIStatusBarStyleLightContent</string>
 
-        <!-- EXPLAIN i18N -->
+        <!-- TODO: EXPLAIN i18N -->
         <key>NSLocationAlwaysUsageDescription</key>
         <string>Deny or grant permission to test different scenarios.</string>
 
@@ -45,6 +45,13 @@
   </ios>
   <android xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest>
+
+        <!--
+        Required if you want to run the app on Android 2.3.7 with Titanium
+        4.1.1 or later to test the AppCompat Button
+        <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="23"/>
+        -->
+
         <application android:theme="@style/appcelerator" />
 
         <uses-permission android:name="android.permission.READ_CALENDAR" />
@@ -75,7 +82,7 @@
     <target device="mobileweb">false</target>
     <target device="windows">false</target>
   </deployment-targets>
-  <sdk-version>5.1.0</sdk-version>
+  <sdk-version>5.1.0.RC</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>

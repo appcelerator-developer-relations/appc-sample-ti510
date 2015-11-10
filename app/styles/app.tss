@@ -13,17 +13,27 @@ overrode the settings with other TSS, XML, or JS settings:
 
 */
 
+'TabGroup': {
+	tabsBackgroundColor: 'white',
+	tabsTintColor: Alloy.CFG.brandPrimary
+}
+
+'Tab': {
+	icon: '/images/tabIcon.png'
+}
+
 'Window[platform=ios]': {
 
-	// Navigation bar
+	// white background instead of default transparent or black
+	backgroundColor: '#fff',
+
+	// Style the TabGroup's navigation bar
 	barColor: Alloy.CFG.brandPrimary,
 	navTintColor: '#FFF',
 	translucent: false,
 	titleAttributes: {
 		color: '#FFF'
-	},
-
-	backgroundColor: '#FFF'
+	}
 }
 
 'TextField[platform=ios]': {

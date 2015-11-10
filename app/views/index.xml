@@ -1,20 +1,28 @@
 <Alloy>
 
-	<!-- 
-	The module-attribute will result in require('xp.ui').createNavigationWindow()
-	See app/lib/xp.ui.js for how we use this to emulate the iOS-only NavigationWindow for Android
-	-->
-	<NavigationWindow id="navWin" module="xp.ui">
+	<!-- For supported environments (see alloy.js) -->
+	<TabGroup if="Alloy.Globals.isSupported" onSelected="onSelected" onUnselected="onUnselected">
+		<Require platform="ios,android" src="permissions" />
+		<Require platform="android" src="cardview" />
+		<Require platform="android" src="android" />
+		<Require src="console" />
+	</TabGroup>
 
-	    <Window title="Samples">
-	        <ListView onItemclick="onListViewItemclick">
-	            <ListSection>
-	            	<ListItem platform="ios,android" itemId="permissions" title="Device Permissions" />
-	                <ListItem platform="android" itemId="cardview" title="CardView" />
-	                <ListItem platform="ios" itemId="ios" title="iOS APIs" />
-	            </ListSection>
-	        </ListView>
-	    </Window>
-	    
-	</NavigationWindow>
+	<!--
+	For unsupported environments
+
+	FIXME: https://jira.appcelerator.org/browse/ALOY-1317
+	Default top-level ID doesn't take if-attribute into account
+	-->
+	<Window if="!Alloy.Globals.isSupported">
+
+		<Label>This sample requires Titanium 5.1.</Label>
+
+		<View platform="android" bottom="20" height="Ti.UI.SIZE" layout="vertical">
+			<Button platform="android">I am a Button</Button>
+			<Label>Run on an different Android 4 to 6 devices/emulators to see how the button is different for each of them. Build with Titanium 5.1 and check the Android-tab to see the buttons are always using Material design.</Label>
+		</View>
+
+	</Window>
+
 </Alloy>
