@@ -1,0 +1,12 @@
+'Button': {
+	top: 20
+}
+
+'#reveal': {
+	top: 20,
+
+	width: 200,
+	height: 200,
+
+	backgroundColor: Alloy.CFG.brandPrimary
+}

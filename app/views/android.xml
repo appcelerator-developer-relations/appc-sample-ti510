@@ -1,0 +1,13 @@
+<Alloy>
+	<Tab title="Android">
+		<Window title="Android APIs">
+			<ScrollView scrollType="vertical" layout="vertical">
+
+				<Button onClick="reveal">view.show/hide({animated:true})</Button>
+
+				<View id="reveal" />
+
+			</ScrollView>
+		</Window>
+	</Tab>
+</Alloy>
