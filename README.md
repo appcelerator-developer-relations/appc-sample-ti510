@@ -23,7 +23,7 @@ In [Titanium 5.0](https://github.com/appcelerator-developer-relations/appc-sampl
 
 ![DefaultIcon](docs/defaulticon.png)
 
-> **NOTE:** Other then showing off the DefaultIcon this Sample app doesn't do much on Windows. We will have a Windows Sample app soon to show how you can mix and match Titanium proxies and [Runtime Direct API Access](http://docs.appcelerator.com/platform/latest/#!/guide/Windows_Runtime_Direct_API_Access).
+> **NOTE:** Other then showing off the DefaultIcon this sample app doesn't do much on Windows. We will have another sample soon to show how you can now mix and match Titanium Views and views created via [Runtime Direct API Access](http://docs.appcelerator.com/platform/latest/#!/guide/Windows_Runtime_Direct_API_Access).
 
 ## iOS
 This release includes several new features for iOS.

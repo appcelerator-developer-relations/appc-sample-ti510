@@ -1,0 +1,6 @@
+'Label': {
+	left: 20,
+	right: 20,
+
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+}
