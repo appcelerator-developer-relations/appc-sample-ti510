@@ -16,7 +16,7 @@
   <ios>
 
     <!-- Remove or set to false to disable auto layout (default) -->
-    <use-autolayout>false</use-autolayout>
+    <use-autolayout>true</use-autolayout>
 
     <!-- Remove or set to false to run JS on its own thread (default) -->
     <run-on-main-thread>true</run-on-main-thread>
