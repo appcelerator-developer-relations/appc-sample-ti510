@@ -101,6 +101,8 @@ Android [Cards](https://www.google.com/design/spec/components/cards.html) are me
 
 ![cardview](docs/cardview.png)
 
+> **NOTE:** There are a few [known issues](https://jira.appcelerator.org/issues/?filter=17132) with CardView, most prominently of which is that at the moment contentPadding and cardCornerRadius ignore the default unit and use pixels. This will be addressed in the next patch release.
+
 #### Sample
 The *CardView* tab demonstrates all of the different properties that you can use. It also discusses how `cardUserCompatPadding`, `cardPreventCornerOverlap` and `cardMaxElevation` determine how the cards look on Android 4 and older using the AppCompat library. Read more about these important properties in the [Android Reference](http://developer.android.com/reference/android/support/v7/widget/CardView.html).
 
