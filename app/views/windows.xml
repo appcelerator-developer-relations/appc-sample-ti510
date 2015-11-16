@@ -1,7 +1,7 @@
 <Alloy>
 	<Tab title="Windows">
 		<Window id="win" title="Windows APIs">
-
+			<Label>This sample app only demonstrates the DefaultIcon.png for Windows.</Label>
 		</Window>
 	</Tab>
 </Alloy>

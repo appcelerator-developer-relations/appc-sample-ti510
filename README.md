@@ -23,6 +23,8 @@ In [Titanium 5.0](https://github.com/appcelerator-developer-relations/appc-sampl
 
 ![DefaultIcon](docs/defaulticon.png)
 
+> **NOTE:** Other then showing off the DefaultIcon this Sample app doesn't do much on Windows. We will have a Windows Sample app soon to show how you can mix and match Titanium proxies and [Runtime Direct API Access](http://docs.appcelerator.com/platform/latest/#!/guide/Windows_Runtime_Direct_API_Access).
+
 ## iOS
 This release includes several new features for iOS.
 
@@ -119,11 +121,3 @@ The same is true for the [Preferences Dialog](http://developer.android.com/guide
 
 #### Testing
 To see the differences build the app with Titanium 5.1 for several Android versions to see the buttons always look the same. Then open [tiapp.xml](tiapp.xml), remove the comments around `<uses-sdk>` and change the `<sdk-version>` to 4.1.1 or older. Build again for different Android versions to see that the buttons are like the above screenshot.
-
--------------------------------------------------
-
-## TODO
-
-- Picker, Contacts for Windows
-
-- Mix and match Ti.UI.View and native views https://jira.appcelerator.org/browse/TIMOB-19245
