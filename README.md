@@ -75,8 +75,7 @@ For several reasons, we used to run the JavaScript engine on a dedicated *KrollT
 #### Making the most of your Single Thread
 Titan [Ronald Treur](https://twitter.com/ronaldtreur) gave an excellent talk about [making the most of your Single Thread](http://www.slideshare.net/ronaldtreur/titanium-making-the-most-of-your-single-thread) at tiConf EU 2014. As you go through his slides, remember that calls to Titanium proxies will now be on the same callstack and will have to wait till the stacked codeblocks have been executed before they run.
 
-[![callstack](docs/callstack.png)
-Ronald Truer: Making the most of your Single Thread](http://www.slideshare.net/ronaldtreur/titanium-making-the-most-of-your-single-thread)
+[![callstack](docs/callstack.png)](http://www.slideshare.net/ronaldtreur/titanium-making-the-most-of-your-single-thread)
 
 #### Sample
 The last test on the *iOS* tab will loop over an array to generate thousands of UUIDs. Test with and without main thread enabled in tiapp.xml to see how with unoptimized code found in the `testThread()` callback in [ios.js](app/controllers/ios.js) the progress bar won't update until all operations are finished if main thread is enabled. This is because the calls to update the progress bar are stacked until after all of `testThread()` is done. To the user it will look like the progress bar fills up at once after waiting for all operations to be finished.
