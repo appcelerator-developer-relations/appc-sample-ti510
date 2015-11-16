@@ -1,0 +1,16 @@
+<Alloy>
+	<Tab title="Auto Layout">
+		<Window title="Auto Layout">
+			<View class="vbox">
+
+				<Label class="help">Enable Slow Animation (⌘L) and rotate the device (⌘→) to see how with Auto Layout the the views slowly transition.</Label>
+
+				<View class="tpad" backgroundColor="red">
+					<View top="10%" width="35%" bottom="10%" left="10%" backgroundColor="green" />
+					<View top="10%" right="10%" bottom="10%" width="35%" backgroundColor="blue" />
+				</View>
+
+			</View>
+		</Window>
+	</Tab>
+</Alloy>

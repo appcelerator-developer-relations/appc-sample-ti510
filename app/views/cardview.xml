@@ -1,7 +1,7 @@
 <Alloy>
 	<Tab title="CardView">
 		<Window title="CardView">
-			<ScrollView scrollType="vertical" layout="vertical">
+			<ScrollView layout="vertical">
 				
 				<!-- FIXME: with ns styles is not working with Alloy 1.7.18 -->
 				<CardView>

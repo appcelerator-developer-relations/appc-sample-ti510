@@ -1,13 +1,27 @@
 <Alloy>
-	<Tab title="Android">
-		<Window title="Android APIs">
-			<ScrollView scrollType="vertical" layout="vertical">
+	<Window title="Android APIs">
+		<ScrollView layout="vertical">
+			<View class="vbox">
 
-				<Button onClick="reveal">view.show/hide({animated:true})</Button>
+				<Label class="help" if="!Alloy.Globals.isSupported">You've build the app using an Titanium version older than 5.1 so we only show this window to demonstrate how it looked before the AppCompat updates we did in 5.1</Label>
 
-				<View id="reveal" />
+				<Label class="help" if="Alloy.Globals.isSupported">You've build the app using Titanium 5.1 or later. Follow the instructions in the README to build it with Titanium 4.1.1 or older to see the effect of our AppCompat updates in 5.1</Label>
 
-			</ScrollView>
-		</Window>
-	</Tab>
+
+				<Label class="tpad2 help">Tap to see the reveal effect on Android 5.x or later. Run on older Android versions to see that the Button now always uses Material Design:</Label>
+
+				<Button class="tpad" onClick="reveal">view.show/hide({animated:true})</Button>
+				<View class="tpad" id="reveal" />
+
+
+				<Label class="tpad2 help">Tap the Progress Bar to fill it up in the color we've set:</Label>
+				<ProgressBar width="300" value="0" min="0" max="300" color="Alloy.CFG.brandPrimary" onClick="progress" />
+
+
+				<Label class="tpad2 help">Run on different Android versions and tap to see that the Preferences Dialog always now uses Material Design:</Label>
+				<Button class="tpad" onClick="openPreferences">Ti.UI.Android.openPreferences()</Button>
+
+			</View>
+		</ScrollView>
+	</Window>
 </Alloy>

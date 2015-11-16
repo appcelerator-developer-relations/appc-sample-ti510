@@ -1,0 +1,53 @@
+<Alloy>
+	<Tab title="iOS">
+		<Window title="iOS APIs">
+			<ScrollView>
+				<View class="vbox">
+
+					<Label class="help">Compare opening an URL in Safari and the new Safari Dialog:</Label>
+
+					<Button class="tpad" onClick="openSafari">Ti.Platform.openURL()</Button>
+					<Button class="tpad" onClick="openSafariDialog">ti.safaridialog.open()</Button>
+
+
+					<Label class="help tpad2">Change the height of a picker:</Label>
+
+					<!-- You can now set the picker height, but only at creation -->
+					<Picker class="tpad" type="Ti.UI.PICKER_TYPE_DATE" height="50" />
+
+
+					<Label class="help tpad2">See how we use the new placeholder, keyboardType and returnKeyType properties in the controller:</Label>
+
+					<Button class="tpad" onClick="alertDialog">PLAIN_TEXT_INPUT</Button>
+					<Button class="tpad" onClick="alertDialog">SECURE_TEXT_INPUT</Button>
+					<Button class="tpad" onClick="alertDialog">LOGIN_AND_PASSWORD_INPUT</Button>
+
+
+					<Label class="tpad2 help">Tap and quickly lock your phone (⌘L in Simulator) or press the home button (⇧⌘H) to see the new text input option for interaction notification actions:</Label>
+
+					<Button class="tpad" onClick="notification">TEXTINPUT</Button>
+
+
+					<Label id="thinningHelp" class="tpad2 help" />
+
+					<ImageView class="tpad" image="/images/tabIcon.png" />
+					<Label id="file" />
+
+
+					<Label class="tpad2 help">Test with and without main thread enabled in tiapp.xml to see how with unoptimized code the progress bar won't update until all operations are finished if main thread is enabled. Also note that async's eachSeries() utility is faster (and also cleaner in code) then Underscore's defer().</Label>
+
+					<ButtonBar class="tpad" onClick="testThread">
+						<Labels>
+							<Label>Unoptimized</Label>
+							<Label>_.defer()</Label>
+							<Label>async.eachSeries()</Label>
+						</Labels>
+					</ButtonBar>
+
+					<ProgressBar id="progressBar" class="tpad" min="0" max="Alloy.CFG.threadOperations" value="0" width="300" />
+
+				</View>
+			</ScrollView>
+		</Window>
+	</Tab>
+</Alloy>

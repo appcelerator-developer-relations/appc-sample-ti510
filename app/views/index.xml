@@ -1,28 +1,24 @@
 <Alloy>
 
 	<!-- For supported environments (see alloy.js) -->
-	<TabGroup if="Alloy.Globals.isSupported" onSelected="onSelected" onUnselected="onUnselected">
+	<TabGroup if="Alloy.Globals.isSupported">
 		<Require platform="ios,android" src="permissions" />
 		<Require platform="android" src="cardview" />
-		<Require platform="android" src="android" />
+		
+		<!-- We took the Tab out because we re-use the android-window in index.js -->
+		<Tab platform="android" title="Android">
+			<Require src="android" />
+		</Tab>
+		
+		<Require platform="ios" src="ios" />
+		<Require platform="ios" src="autolayout" />
+		<Require platform="windows" src="windows" />
 		<Require src="console" />
 	</TabGroup>
 
-	<!--
-	For unsupported environments
-
-	FIXME: https://jira.appcelerator.org/browse/ALOY-1317
-	Default top-level ID doesn't take if-attribute into account
-	-->
+	<!-- For unsupported environments -->
 	<Window if="!Alloy.Globals.isSupported">
-
 		<Label>This sample requires Titanium 5.1.</Label>
-
-		<View platform="android" bottom="20" height="Ti.UI.SIZE" layout="vertical">
-			<Button platform="android">I am a Button</Button>
-			<Label>Run on an different Android 4 to 6 devices/emulators to see how the button is different for each of them. Build with Titanium 5.1 and check the Android-tab to see the buttons are always using Material design.</Label>
-		</View>
-
 	</Window>
 
 </Alloy>

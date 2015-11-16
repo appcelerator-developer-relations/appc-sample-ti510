@@ -14,11 +14,27 @@
   <guid>11111111-1111-1111-1111-111111111111</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <ios>
+
+    <!-- Remove or set to false to disable auto layout (default) -->
+    <use-autolayout>false</use-autolayout>
+
+    <!-- Remove or set to false to run JS on its own thread (default) -->
+    <run-on-main-thread>true</run-on-main-thread>
+
+    <!-- Remove or set to false to disable asset catalogs for image assets (default) -->
+    <use-app-thinning>true</use-app-thinning>
+
     <plist>
       <dict>
         <key>UISupportedInterfaceOrientations~iphone</key>
         <array>
           <string>UIInterfaceOrientationPortrait</string>
+
+          <!-- This one is considered bad practice by Apple, but here to demonstrate auto layout -->
+          <string>UIInterfaceOrientationPortraitUpsideDown</string>
+
+          <string>UIInterfaceOrientationLandscapeLeft</string>
+          <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
         <key>UISupportedInterfaceOrientations~ipad</key>
         <array>
@@ -36,7 +52,11 @@
         <key>UIStatusBarStyle</key>
         <string>UIStatusBarStyleLightContent</string>
 
-        <!-- TODO: EXPLAIN i18N -->
+        <!--
+        To use Geolocation you need to specify the reason using the follow key
+        or NSLocationWhenInUseUsageDescription if you only need it when the app runs.
+        You can localize the value in a i18n/<lang>/app.xml file (not strings.xml!)
+        -->
         <key>NSLocationAlwaysUsageDescription</key>
         <string>Deny or grant permission to test different scenarios.</string>
 
@@ -48,33 +68,20 @@
 
         <!--
         Required if you want to run the app on Android 2.3.7 with Titanium
-        4.1.1 or later to test the AppCompat Button
+        4.1.1 or older to test the AppCompat Button
         <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="23"/>
         -->
 
         <application android:theme="@style/appcelerator" />
 
-        <uses-permission android:name="android.permission.READ_CALENDAR" />
-        <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
-        <!-- FIXME: https://jira.appcelerator.org/browse/TIDOC-2352 -->
-        <uses-permission android:name="android.permission.READ_CONTACTS" />
-        <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-
-        <!-- FIXME: https://jira.appcelerator.org/browse/TIMOB-19852 -->
-        <uses-permission android:name="android.permission.CAMERA" />
-
     </manifest>
   </android>
-  <mobileweb>
-    <precache/>
-    <splash>
-      <enabled>true</enabled>
-      <inline-css-images>true</inline-css-images>
-    </splash>
-    <theme>default</theme>
-  </mobileweb>
-  <modules/>
+  <modules>
+
+    <!-- Require the ti.safaridialog module bundled with the Titanium SDK -->
+    <module platform="iphone">ti.safaridialog</module>
+
+  </modules>
   <deployment-targets>
     <target device="android">true</target>
     <target device="ipad">false</target>

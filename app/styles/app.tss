@@ -36,19 +36,26 @@ overrode the settings with other TSS, XML, or JS settings:
 	}
 }
 
-'TextField[platform=ios]': {
-	width: Ti.UI.FILL,
-	
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+'Button': {
+	width: 300
 }
 
+// Make the buttons stand out a bit more on iOS -->
+'Button[platform=ios]': {
+	borderWidth: 1,
+	borderColor: '#0071ff',
+	borderRadius: 4
+}
+
+// Make all ScrollViews scroll vertical
 'ScrollView': {
-	contentWidth: Ti.UI.FILE,
+	contentWidth: Ti.UI.FILL,
 	contentHeight: Ti.UI.SIZE,
 
 	scrollType: 'vertical'
 }
 
+// A vertical layout with padding
 '.vbox': {
 	layout: 'vertical',
 	top: 20,
@@ -56,6 +63,7 @@ overrode the settings with other TSS, XML, or JS settings:
 	bottom: 20,
 	left: 20,
 
+	// Because we use both top and bottom height would default to the parent height
 	height: Ti.UI.SIZE
 }
 
@@ -63,9 +71,14 @@ overrode the settings with other TSS, XML, or JS settings:
 	top: 20
 }
 
+'.tpad2': {
+	top: 40
+}
+
 '.help': {
 	color: '#999',
 	font: {
-		fontSize: 11
-	}
+		fontSize: 13
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }

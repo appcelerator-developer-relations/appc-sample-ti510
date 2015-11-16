@@ -20,11 +20,10 @@
  */
 (function(global) {
 
-	// This variable would have been global without the SEF
+	// This variable would have been global without the above SEF
 	var versions = Ti.version.split('.');
 
-	// Used in views/index.xml
-	// This sample requires Ti SDK 5.1.0 or later
+	// Used in the index view and controller to check if the appw as build with Ti 5.1 or later
 	Alloy.Globals.isSupported = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1);
 
 })(this);

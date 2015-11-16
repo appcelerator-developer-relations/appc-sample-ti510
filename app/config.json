@@ -1,6 +1,8 @@
 {
 	"global": {
-		"brandPrimary": "#CD1625"
+		"brandPrimary": "#CD1625",
+		"brandSecondary": "#484950",
+		"threadOperations": 50000
 	},
 	"env:development": {},
 	"env:test": {},

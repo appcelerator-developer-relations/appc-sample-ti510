@@ -1,17 +1,29 @@
 <Alloy>
-	<Tab title="Permissions">
+	<Tab id="tab" title="Permissions">
 		<Window title="Device Permissions">
 
-			<ScrollView layout="vertical">
+			<!-- iOS-only: Right navigation button -->
+			<RightNavButton platform="ios" systemButton="EDIT" onClick="editPermissions" />
 
-				<Button onClick="calendar">Ti.Calendar</Button>
+			<!-- Android-only: Action Bar menu item for the TabGroup, via hack in index.js -->
+			<Menu platform="android">
+				<MenuItem title="Edit" onClick="editPermissions" showAsAction="Ti.Android.SHOW_AS_ACTION_ALWAYS"/>
+        	</Menu>
 
-				<Button onClick="contacts">Ti.Contacts</Button>
+			<ScrollView>
+				<View class="vbox">
 
-				<Button onClick="geolocation">Ti.Geolocation</Button>
+					<Label class="help">Tap the top right Edit button to open the settings screen to change your initial response to the permission request.</Label>
 
-				<Button onClick="media">Ti.Media</Button>
+					<Button class="tpad" onClick="calendar">Ti.Calendar</Button>
 
+					<Button class="tpad" onClick="contacts">Ti.Contacts</Button>
+
+					<Button class="tpad" onClick="geolocation">Ti.Geolocation</Button>
+
+					<Button class="tpad" onClick="media">Ti.Media</Button>
+
+				</View>
 			</ScrollView>
 
 		</Window>
