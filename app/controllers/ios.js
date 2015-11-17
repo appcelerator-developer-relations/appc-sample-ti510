@@ -78,21 +78,6 @@ function openSafariDialog() {
 		// The color for the buttons
 		tintColor: Alloy.CFG.brandPrimary
 	});
-
-	// After 5 seconds
-	setTimeout(function() {
-
-		// Check if the dialog is still open
-		var opened = dialog.opened;
-		log.args('ti.safaridialog.opened', opened);
-
-		if (opened) {
-
-			// Programmatically close it
-			dialog.close();
-		}
-
-	}, 10000);
 }
 
 /**
@@ -147,7 +132,7 @@ function notification() {
 	Ti.App.iOS.scheduleLocalNotification({
 		alertBody: 'Select the \'Input\' action.',
 
-		// Notify in 3 seconds
+		// Notify in 5 seconds
 		date: new Date(new Date().getTime() + 5000),
 
 		// Select the sample category registered in registerUserNotificationSettings()
@@ -182,6 +167,9 @@ function registerUserNotificationSettings() {
 
 						// Set it to background so that it also works on Apple Watch
 						activationMode: Ti.App.iOS.USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND
+						
+						// -- Alternative: Set it to foreground to open the app after clicking an action
+						// activationMode: Ti.App.iOS.USER_NOTIFICATION_ACTIVATION_MODE_FOREGROUND
 					}),
 
 					// Create an action

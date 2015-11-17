@@ -37,7 +37,7 @@ overrode the settings with other TSS, XML, or JS settings:
 }
 
 'Button': {
-	width: 300
+	width: 275
 }
 
 // Make the buttons stand out a bit more on iOS -->
