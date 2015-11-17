@@ -30,19 +30,28 @@ function calendar(e) {
 	var hasCalendarPermissions = Ti.Calendar.hasCalendarPermissions();
 	log.args('Ti.Calendar.hasCalendarPermissions', hasCalendarPermissions);
 
+	if (hasCalendarPermissions) {
+
+		// We have to actually use a Ti.Calendar method for the permissions to be generated
+		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
+		log.args('Ti.Calendar.getAllCalendars', Ti.Calendar.getAllCalendars());
+
+		return alert('You already have permission.');
+	}
+
 	// On iOS we can get information on the reason why we might not have permission
 	if (OS_IOS) {
 
+		// Map constants to names
+		var map = {};
+		map[Ti.Calendar.AUTHORIZATION_AUTHORIZED] = 'AUTHORIZATION_AUTHORIZED';
+		map[Ti.Calendar.AUTHORIZATION_DENIED] = 'AUTHORIZATION_DENIED';
+		map[Ti.Calendar.AUTHORIZATION_RESTRICTED] = 'AUTHORIZATION_RESTRICTED';
+		map[Ti.Calendar.AUTHORIZATION_UNKNOWN] = 'AUTHORIZATION_UNKNOWN';
+
 		// Available since Ti 3.1.0
 		var eventsAuthorization = Ti.Calendar.eventsAuthorization;
-
-		// Log constant name
-		['AUTHORIZATION_AUTHORIZED', 'AUTHORIZATION_DENIED', 'AUTHORIZATION_RESTRICTED', 'AUTHORIZATION_UNKNOWN'].some(function(constant) {
-			if (eventsAuthorization === Ti.Calendar[constant]) {
-				log.args('Ti.Calendar.eventsAuthorization', 'Ti.Calendar.' + constant);
-				return true;
-			}
-		});
+		log.args('Ti.Calendar.eventsAuthorization', 'Ti.Calendar.' + map[eventsAuthorization]);
 
 		if (eventsAuthorization === Ti.Calendar.AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
@@ -56,20 +65,13 @@ function calendar(e) {
 		}
 	}
 
-	if (hasCalendarPermissions) {
-
-		// We have to actually use a Ti.Calendar method for the permissions to be generated
-		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
-		log.args('Ti.Calendar.getAllCalendars', Ti.Calendar.getAllCalendars());
-
-		return alert('You already have permission.');
-	}
-
 	// The new cross-platform way to request permissions
 	Ti.Calendar.requestCalendarPermissions(function(e) {
 		log.args('Ti.Calendar.requestCalendarPermissions', e);
 
 		if (e.success) {
+
+			// Instead, probably call the same method you call if hasCalendarPermissions() is true
 			alert('You granted permission.');
 
 		} else if (OS_ANDROID) {
@@ -93,19 +95,28 @@ function contacts(e) {
 	var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
 	log.args('Ti.Contacts.hasContactsPermissions', hasContactsPermissions);
 
+	if (hasContactsPermissions) {
+
+		// We have to actually use a Ti.Contacts method for the permissions to be generated
+		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
+		log.args('Ti.Contacts.getAllGroups', Ti.Contacts.getAllGroups());
+
+		return alert('You already have permission.');
+	}
+
 	// On iOS we can get information on the reason why we might not have permission
 	if (OS_IOS) {
 
+		// Map constants to names
+		var map = {};
+		map[Ti.Contacts.AUTHORIZATION_AUTHORIZED] = 'AUTHORIZATION_AUTHORIZED';
+		map[Ti.Contacts.AUTHORIZATION_DENIED] = 'AUTHORIZATION_DENIED';
+		map[Ti.Contacts.AUTHORIZATION_RESTRICTED] = 'AUTHORIZATION_RESTRICTED';
+		map[Ti.Contacts.AUTHORIZATION_UNKNOWN] = 'AUTHORIZATION_UNKNOWN';
+
 		// Available since Ti 2.1.3 and always returns AUTHORIZATION_AUTHORIZED on iOS<6 and Android
 		var contactsAuthorization = Ti.Contacts.contactsAuthorization;
-
-		// Log constant name
-		['AUTHORIZATION_AUTHORIZED', 'AUTHORIZATION_DENIED', 'AUTHORIZATION_RESTRICTED', 'AUTHORIZATION_UNKNOWN'].some(function(constant) {
-			if (contactsAuthorization === Ti.Contacts[constant]) {
-				log.args('Ti.Contacts.contactsAuthorization', 'Ti.Contacts.' + constant);
-				return true;
-			}
-		});
+		log.args('Ti.Contacts.contactsAuthorization', 'Ti.Contacts.' + map[contactsAuthorization]);
 
 		if (contactsAuthorization === Ti.Contacts.AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
@@ -119,20 +130,13 @@ function contacts(e) {
 		}
 	}
 
-	if (hasContactsPermissions) {
-
-		// We have to actually use a Ti.Contacts method for the permissions to be generated
-		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
-		log.args('Ti.Contacts.getAllGroups', Ti.Contacts.getAllGroups());
-
-		return alert('You already have permission.');
-	}
-
 	// The new cross-platform way to request permissions
 	Ti.Contacts.requestContactsPermissions(function(e) {
 		log.args('Ti.Contacts.requestContactsPermissions', e);
 
 		if (e.success) {
+
+			// Instead, probably call the same method you call if hasContactsPermissions() is true
 			alert('You granted permission.');
 
 		} else if (OS_ANDROID) {
@@ -152,12 +156,7 @@ function contacts(e) {
  */
 function geolocation(e) {
 
-	// The new cross-platform way to check permissions
-	// The first argument is required on iOS and ignored on other platforms
-	var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS);
-	log.args('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
-
-	// On iOS we can get information on the reason why we might not have permission
+	// Let's include some related properties for iOS we already had
 	if (OS_IOS) {
 
 		// Available since Ti 5.0
@@ -166,18 +165,33 @@ function geolocation(e) {
 		// Available since Ti 0.x,
 		// Always returns true on Android>2.2
 		log.args('Ti.Geolocation.locationServicesEnabled', Ti.Geolocation.locationServicesEnabled);
+	}
+
+	// The new cross-platform way to check permissions
+	// The first argument is required on iOS and ignored on other platforms
+	var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS);
+	log.args('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
+
+	if (hasLocationPermissions) {
+		return alert('You already have permission.');
+	}
+
+	// On iOS we can get information on the reason why we might not have permission
+	if (OS_IOS) {
+
+		// Map constants to names
+		var map = {};
+		map[Ti.Geolocation.AUTHORIZATION_ALWAYS] = 'AUTHORIZATION_ALWAYS';
+		map[Ti.Geolocation.AUTHORIZATION_AUTHORIZED] = 'AUTHORIZATION_AUTHORIZED';
+		map[Ti.Geolocation.AUTHORIZATION_DENIED] = 'AUTHORIZATION_DENIED';
+		map[Ti.Geolocation.AUTHORIZATION_RESTRICTED] = 'AUTHORIZATION_RESTRICTED';
+		map[Ti.Geolocation.AUTHORIZATION_UNKNOWN] = 'AUTHORIZATION_UNKNOWN';
+		map[Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE] = 'AUTHORIZATION_WHEN_IN_USE';
 
 		// Available since Ti 0.8 for iOS and Ti 4.1 for Windows
 		// Always returns AUTHORIZATION_UNKNOWN on iOS<4.2
 		var locationServicesAuthorization = Ti.Geolocation.locationServicesAuthorization;
-
-		// Log constant name
-		['AUTHORIZATION_ALWAYS', 'AUTHORIZATION_AUTHORIZED', 'AUTHORIZATION_DENIED', 'AUTHORIZATION_RESTRICTED', 'AUTHORIZATION_UNKNOWN', 'AUTHORIZATION_WHEN_IN_USE'].some(function(constant) {
-			if (locationServicesAuthorization === Ti.Geolocation[constant]) {
-				log.args('Ti.Geolocation.locationServicesAuthorization', 'Ti.Calendar.' + constant);
-				return true;
-			}
-		});
+		log.args('Ti.Geolocation.locationServicesAuthorization', 'Ti.Geolocation.' + map[locationServicesAuthorization]);
 
 		if (locationServicesAuthorization === Ti.Geolocation.AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
@@ -191,16 +205,14 @@ function geolocation(e) {
 		}
 	}
 
-	if (hasLocationPermissions) {
-		return alert('You already have permission.');
-	}
-
 	// The new cross-platform way to request permissions
 	// The first argument is required on iOS and ignored on other platforms
 	Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 		log.args('Ti.Geolocation.requestLocationPermissions', e);
 
 		if (e.success) {
+
+			// Instead, probably call the same method you call if hasLocationPermissions() is true
 			alert('You granted permission.');
 
 		} else if (OS_ANDROID) {
@@ -209,7 +221,12 @@ function geolocation(e) {
 		} else {
 
 			// We already check AUTHORIZATION_DENIED earlier so we can be sure it was denied now and not before
-			alert('You denied permission.');
+			Ti.UI.createAlertDialog({
+				title: 'You denied permission.',
+
+				// We also end up here if the NSLocationAlwaysUsageDescription is missing from tiapp.xml in which case e.error will say so
+				message: e.error
+			}).show();
 		}
 	});
 }
@@ -220,18 +237,34 @@ function geolocation(e) {
  */
 function media(e) {
 
+	// This is now the cross-platform way to check permissions.
+	// The above is still useful as it provides the reason of denial.
+	var hasCameraPermissions = Ti.Media.hasCameraPermissions();
+	log.args('Ti.Media.hasCameraPermissions', hasCameraPermissions);
+
+	if (hasCameraPermissions) {
+
+		// We have to actually use Ti.Media.showCamera for the permissions to be generated
+		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
+		return Ti.Media.showCamera({
+			success: function(e) {
+				log.args('Ti.Media.showCamera:success', e);
+			}
+		});
+	}
+
 	// This iOS-only property is available since Ti 4.0
 	if (OS_IOS) {
+
+		// Map constants to names
+		var map = {};
+		map[Ti.Media.CAMERA_AUTHORIZATION_AUTHORIZED] = 'CAMERA_AUTHORIZATION_AUTHORIZED';
+		map[Ti.Media.CAMERA_AUTHORIZATION_DENIED] = 'CAMERA_AUTHORIZATION_DENIED';
+		map[Ti.Media.CAMERA_AUTHORIZATION_RESTRICTED] = 'CAMERA_AUTHORIZATION_RESTRICTED';
+		map[Ti.Media.CAMERA_AUTHORIZATION_NOT_DETERMINED] = 'CAMERA_AUTHORIZATION_NOT_DETERMINED';
+
 		var cameraAuthorizationStatus = Ti.Media.cameraAuthorizationStatus;
-
-		['CAMERA_AUTHORIZATION_AUTHORIZED', 'CAMERA_AUTHORIZATION_DENIED', 'CAMERA_AUTHORIZATION_RESTRICTED', 'CAMERA_AUTHORIZATION_NOT_DETERMINED'].some(function(constant) {
-
-			if (cameraAuthorizationStatus === Ti.Media[constant]) {
-				log.args('Ti.Media.cameraAuthorizationStatus', 'Ti.Media.' + constant);
-				return true;
-			}
-
-		});
+		log.args('Ti.Media.cameraAuthorizationStatus', 'Ti.Media.' + map[cameraAuthorizationStatus]);
 
 		if (cameraAuthorizationStatus === Ti.Media.CAMERA_AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
@@ -245,28 +278,14 @@ function media(e) {
 		}
 	}
 
-	// This is now the cross-platform way to check permissions.
-	// The above is still useful as it provides the reason of denial.
-	var hasCameraPermissions = Ti.Media.hasCameraPermissions();
-	log.args('Ti.Media.hasCameraPermissions', hasCameraPermissions);
-
-	if (hasCameraPermissions) {
-
-		// We have to actually use Ti.Media.showCamera for the permissions to be generated
-		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
-		Ti.Media.showCamera({
-			success: function(e) {
-				log.args('Ti.Media.showCamera:success', e);
-			}
-		});
-	}
-
 	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19851
 	// You will be prompted to grant to permissions. If you deny either one weird things happen
 	Ti.Media.requestCameraPermissions(function(e) {
 		log.args('Ti.Media.requestCameraPermissions', e);
 
 		if (e.success) {
+
+			// Instead, probably call the same method you call if hasCameraPermissions() is true
 			alert('You granted permission.');
 
 		} else if (OS_ANDROID) {
