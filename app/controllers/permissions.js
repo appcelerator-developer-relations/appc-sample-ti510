@@ -7,14 +7,11 @@ var log = require('log');
  */
 function editPermissions(e) {
 
-	if (OS_IOS) {		
-		// The app-settings can only be accessed from the device
-		if (Ti.App.getDeployType() == "development") {
-			alert('Please run this test from your device to open the settings.');
-		} else {
-			Ti.Platform.openURL('app-settings:');
-		}		
-	} else if (OS_ANDROID) {
+	if (OS_IOS) {
+		Ti.Platform.openURL('app-settings:');
+	}
+
+	if (OS_ANDROID) {
 		var intent = Ti.Android.createIntent({
 			action: 'android.settings.APPLICATION_SETTINGS',
 		});
