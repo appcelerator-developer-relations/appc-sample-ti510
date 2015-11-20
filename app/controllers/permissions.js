@@ -99,8 +99,10 @@ function contacts(e) {
 
 		// We have to actually use a Ti.Contacts method for the permissions to be generated
 		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
-		log.args('Ti.Contacts.getAllGroups', Ti.Contacts.getAllGroups());
-
+		if(OS_IOS){
+			log.args('Ti.Contacts.getAllGroups', Ti.Contacts.getAllGroups());
+		}
+		
 		return alert('You already have permission.');
 	}
 
