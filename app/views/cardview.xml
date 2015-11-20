@@ -3,12 +3,11 @@
 		<Window title="CardView">
 			<ScrollView layout="vertical">
 
-				<!-- FIXME: with ns styles is not working with Alloy 1.7.18 -->
-				<CardView class="card" ns="Ti.UI.Android" >
+				<CardView class="card">
 					<Label>Our base style:\n\ntop, left, right: 20\ncontentPadding: 40\ncardCornerRadius: 20</Label>
 				</CardView>
 
-				<CardView class="card" ns="Ti.UI.Android" onClick="cardUseCompatPadding">
+				<CardView class="card" onClick="cardUseCompatPadding">
 					<Label id="cardUseCompatPadding" touchEnabled="false">cardUseCompatPadding: undefined (false)</Label>
 				</CardView>
 
@@ -18,16 +17,16 @@
 				contentPadding overrides all side-specific paddings set before
 				contentPaddingX sets padding for a specific side
 				-->
-				<CardView class="card" ns="Ti.UI.Android" contentPadding="0" contentPaddingLeft="40">
+				<CardView class="card" contentPadding="0" contentPaddingLeft="40">
 					<Label>contentPadding: 0\ncontentPaddingLeft: 40</Label>
 				</CardView>
 
 				<!-- Overide our default cardCornerRadius of 20 -->
-				<CardView class="card" ns="Ti.UI.Android" cardCornerRadius="0">
+				<CardView class="card" cardCornerRadius="0">
 					<Label>cardCornerRadius: 0</Label>
 				</CardView>
 
-				<CardView class="card" ns="Ti.UI.Android" onClick="cardPreventCornerOverlap" contentPadding="0">
+				<CardView class="card" onClick="cardPreventCornerOverlap" contentPadding="0">
 					<View layout="vertical" touchEnabled="false">
 						<ImageView image="/images/photo.jpg" touchEnabled="false" width="Ti.UI.FILL"/>
 						<Label id="cardPreventCornerOverlap" touchEnabled="false">cardPreventCornerOverlap: undefined (true)</Label>
@@ -36,11 +35,11 @@
 
 				<Label class="help">Before Android 5, CardView does not clip its children that intersect with rounded corners. Instead, it adds padding. Set cardPreventCornerOverlap to false to disable the padding and have the content overlap any rounded corners. Run with Android 4.x or before and tap the label to toggle and see the difference.</Label>
 
-				<CardView class="card" ns="Ti.UI.Android" cardBackgroundColor="Alloy.CFG.brandPrimary">
+				<CardView class="card" cardBackgroundColor="Alloy.CFG.brandPrimary">
 					<Label color="white">cardBackgroundColor: Alloy.CFG.brandPrimary</Label>
 				</CardView>
 
-				<CardView class="card" ns="Ti.UI.Android" id="cardElevation" cardElevation="25">
+				<CardView class="card" id="cardElevation" cardElevation="25">
 					<View layout="vertical">
 						<Label id="cardElevationLabel">cardElevation: 25</Label>
 						<Slider min="0" max="50" value="25" width="150" onChange="cardElevation" />
@@ -49,7 +48,7 @@
 
 				<Label class="help">Before Android 5, CardView adds padding to its content and draws a custom shadow implementation to that area to immitate true elevation.</Label>
 
-				<CardView class="card" ns="Ti.UI.Android" id="cardMaxElevation" cardElevation="25" cardMaxElevation="50">
+				<CardView class="card" id="cardMaxElevation" cardElevation="25" cardMaxElevation="50">
 					<View layout="vertical">
 						<Label id="cardMaxElevationLabel">cardElevation: 25\ncardMaxElevation: 50</Label>
 						<Slider min="0" max="50" value="25" width="150" onChange="cardMaxElevation" />
