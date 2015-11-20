@@ -1,0 +1,31 @@
+var path = require('path');
+
+task('pre:load', function(event, logger) {
+
+	if (!event.minVersion) {
+		return;
+	}
+
+	var minVersion = splitVersion(event.minVersion);
+	var binPath = process.mainModule.filename;
+	var pkgPath = path.join(binPath, '..', '..', 'package.json');
+	var pkg = require(pkgPath);
+	var version = splitVersion(pkg.version);
+
+	if (version[0] < minVersion[0] || version[1] < minVersion[1] || version[2] < minVersion[2]) {
+		var error = 'This sample requires Alloy ' + minVersion.join('.') + ' or later';
+		var line = (new Array(error.length + 1)).join('-');
+
+		logger.error(line);
+		logger.error(error);
+		logger.error(line);
+
+		process.exit(1);
+	}
+});
+
+function splitVersion(version) {
+	return version.split(/[^0-9]+/).map(function(element) {
+		return parseInt(element, 10);
+	});
+}
