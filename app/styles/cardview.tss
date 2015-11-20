@@ -2,23 +2,24 @@
 	backgroundColor: '#eee'
 }
 
-'CardView': {
+'Label': {
+	top: 20,
+	color: '#000'
+}
+
+'.card': {
 	top: 20,
 
 	// Width defaults to Ti.UI.SIZE
 	// This will fill with some margin left and right
 	left: 20,
 	right: 20,
-	
+
 	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19798
 	contentPadding: 40,
 
 	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19798
 	cardCornerRadius: 20
-}
-
-'Label': {
-	color: '#000'
 }
 
 '.help': {

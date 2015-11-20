@@ -40,7 +40,7 @@ var progressAsc = true;
 		$.thinningHelp.text = 'App Thinning is now disabled in tiapp.xml, as it was before Ti 5.1 and still is by default. You can get images via Ti.Filesystem.';
 		$.file.text = 'file.exists() true';
 	} else {
-		$.thinningHelp.text = 'App Thinning is now enabled in tiapp.xml. Image paths are hased to match the generated aseet catalog name so that you can use them in ImageViews and backgrounds as normal. You can no longer get images via Ti.Filesystem:';
+		$.thinningHelp.text = 'App Thinning is now enabled in tiapp.xml. Image paths are hashed to match the generated aseet catalog name so that you can use them in ImageViews and backgrounds as normal. You can no longer get images via Ti.Filesystem:';
 		$.file.text = 'file.exists() false';
 	}
 
