@@ -6,7 +6,7 @@
 	color: '#000'
 }
 
-'.card': {
+'CardView': {
 	top: 20,
 
 	// Width defaults to Ti.UI.SIZE
