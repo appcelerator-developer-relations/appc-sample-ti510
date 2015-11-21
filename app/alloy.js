@@ -26,4 +26,10 @@
 	// Used in the index view and controller to check if the appw as build with Ti 5.1 or later
 	Alloy.Globals.isSupported = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1);
 
+	// Used in ios.xml as workaround
+	// FIXME: https://jira.appcelerator.org/browse/TIMOB-20028
+	if (OS_IOS && parseInt(Ti.Platform.version.split('.')[0], 10) >= 9) {
+		Alloy.Globals.pickerHeight = 50;
+	}
+
 })(this);
