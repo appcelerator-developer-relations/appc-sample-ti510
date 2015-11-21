@@ -139,8 +139,6 @@ function alertDialog(e) {
  */
 function notification() {
 
-	console.log('notifying');
-
 	Ti.App.iOS.scheduleLocalNotification({
 		alertBody: 'Select the \'Input\' action.',
 
@@ -148,7 +146,7 @@ function notification() {
 		date: new Date(new Date().getTime() + 5000),
 
 		// Select the sample category registered in registerUserNotificationSettings()
-		// category: 'sample'
+		category: 'sample'
 	});
 
 	alert('Now lock the phone or press Home to see the notification in 5s.');
@@ -168,12 +166,12 @@ function registerUserNotificationSettings() {
 			log.args('Ti.App.iOS.addEventListener:localnotificationaction', e);
 		});
 
-		// Fired when a notification was received in the foreground
+		// Fired when a notification was received in the foreground or no action was selected
 		Ti.App.iOS.addEventListener('notification', function(e) {
 			log.args('Ti.App.iOS.addEventListener:notification', e);
 
 			Ti.UI.createAlertDialog({
-				title: 'You were too late!',
+				title: 'You were too late or did not select an action',
 				message: 'Lock the phone or press Home within 5s after tapping the button.'
 			}).show();
 		});
