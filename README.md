@@ -90,7 +90,7 @@ With this release you also have the option to use Apple's Auto Layout. This will
 We hide the complex API for [Programmatically Creating Constrains](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html) so you can continue to use `top`, `left` etc and leave the rest up to us. Since this is quite a dramatic revision of our layout system it is optional for now and can be enabled via [tiapp.xml](tiapp.xml). Please test it with your apps and [report any issues](https://jira.appcelerator.org/).
 
 #### Sample
-The *Auto Layout* tab demonstrates one of the benefits of this change. Run the app in the Simulator both with and without the option enabled in [tiapp.xml](tiapp.xml), activate *Debug > Slow Animations* (`⌘L`) and change the orientation of the device (`⌘→`) to see how with Auto Layout enabled the views slowly transition as the device rotates and also fixes a bug in the old layout system where the bottom percentage is not correctly calculated:
+The *Auto Layout* tab demonstrates one of the benefits of this change. Run the app in the Simulator both with and without the option enabled in [tiapp.xml](tiapp.xml), activate *Debug > Slow Animations* (`⌘T`) and change the orientation of the device (`⌘→`) to see how with Auto Layout enabled the views slowly transition as the device rotates and also fixes a bug in the old layout system where the bottom percentage is not correctly calculated:
 
 ![autolayout](docs/autolayout.gif)
 
