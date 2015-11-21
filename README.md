@@ -1,6 +1,6 @@
 # Titanium 5.1.0 Sample App
 
-> **NOTE:** This Sample App requires Titanium [5.1.0.RC](https://community.appcelerator.com/topic/3976/sdk-5-1-0-rc-and-studio-4-4-0-rc-now-available) or later and Alloy 1.7.20 or later, which is included in AppC CLI Core Package 5.1.0-43 or later.
+> **NOTE:** This Sample App requires Titanium 5.1.0, Alloy 1.7.26 and AppC CLI Core Package 5.1.0 or later.
 
 The [Titanium 5.1.0 Sample App](https://github.com/appcelerator-developer-relations/appc-sample-ti510) demonstrates most of the new features in Titanium 5.1.0, including a re-architected runtime permissions model, new Material Design elements, SafariDialog and also some major changes for iOS under the hood.
 
