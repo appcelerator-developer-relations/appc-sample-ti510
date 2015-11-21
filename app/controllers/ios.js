@@ -28,11 +28,6 @@ var progressAsc = true;
 	// Call our helper to set up interactive notifications
 	registerUserNotificationSettings();
 
-	// Fired when a user selects an interactive notification action
-	Ti.App.iOS.addEventListener('localnotificationaction', function(e) {
-		log.args('Ti.App.iOS.addEventListener:localnotificationaction', e);
-	});
-
 	// If app-thinning is enabled images will no longer be accessable as file
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'images/tabIcon.png');
 
@@ -144,6 +139,8 @@ function alertDialog(e) {
  */
 function notification() {
 
+	console.log('notifying');
+
 	Ti.App.iOS.scheduleLocalNotification({
 		alertBody: 'Select the \'Input\' action.',
 
@@ -151,7 +148,7 @@ function notification() {
 		date: new Date(new Date().getTime() + 5000),
 
 		// Select the sample category registered in registerUserNotificationSettings()
-		category: 'sample'
+		// category: 'sample'
 	});
 
 	alert('Now lock the phone or press Home to see the notification in 5s.');
@@ -161,6 +158,29 @@ function notification() {
  * Helper method to register notification settings.
  */
 function registerUserNotificationSettings() {
+
+	// This event will fire after registerUserNotificationSettings() has been processed
+	Ti.App.iOS.addEventListener('usernotificationsettings', function usernotificationsettings(e) {
+		log.args('Ti.App.iOS:usernotificationsettings', e);
+
+		// Fired when a user selects an interactive notification action
+		Ti.App.iOS.addEventListener('localnotificationaction', function(e) {
+			log.args('Ti.App.iOS.addEventListener:localnotificationaction', e);
+		});
+
+		// Fired when a notification was received in the foreground
+		Ti.App.iOS.addEventListener('notification', function(e) {
+			log.args('Ti.App.iOS.addEventListener:notification', e);
+
+			Ti.UI.createAlertDialog({
+				title: 'You were too late!',
+				message: 'Lock the phone or press Home within 5s after tapping the button.'
+			}).show();
+		});
+
+		// Not needed anymore
+		Ti.App.iOS.removeEventListener('usernotificationsettings', usernotificationsettings);
+	});
 
 	// Register notification types and categories
 	Ti.App.iOS.registerUserNotificationSettings({
