@@ -27,7 +27,7 @@
 					<Button class="tpad" onClick="alertDialog">LOGIN_AND_PASSWORD_INPUT</Button>
 
 
-					<Label class="tpad2 help">Tap and quickly lock your phone (⌘L in Simulator) or press the home button (⇧⌘H) to see the new text input option for interaction notification actions:</Label>
+					<Label class="tpad2 help">Tap and quickly lock your phone (⌘L in Simulator) or press the home button (⇧⌘H) to see the new text input option for interaction notification actions on iOS 9 and later.</Label>
 
 					<Button class="tpad" onClick="notification">TEXTINPUT</Button>
 

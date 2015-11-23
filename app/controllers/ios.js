@@ -140,10 +140,10 @@ function alertDialog(e) {
 function notification() {
 
 	Ti.App.iOS.scheduleLocalNotification({
-		alertBody: 'Select the \'Input\' action.',
+		alertBody: 'Select the Input action, if available.',
 
 		// Notify in 5 seconds
-		date: new Date(new Date().getTime() + 5000),
+		date: new Date(Date.now() + 5000),
 
 		// Select the sample category registered in registerUserNotificationSettings()
 		category: 'sample'
@@ -157,57 +157,55 @@ function notification() {
  */
 function registerUserNotificationSettings() {
 
-	// This event will fire after registerUserNotificationSettings() has been processed
-	Ti.App.iOS.addEventListener('usernotificationsettings', function usernotificationsettings(e) {
-		log.args('Ti.App.iOS:usernotificationsettings', e);
-
-		// Fired when a user selects an interactive notification action
-		Ti.App.iOS.addEventListener('localnotificationaction', function(e) {
-			log.args('Ti.App.iOS.addEventListener:localnotificationaction', e);
-		});
-
-		// Fired when a notification was received in the foreground or no action was selected
-		Ti.App.iOS.addEventListener('notification', function(e) {
-			log.args('Ti.App.iOS.addEventListener:notification', e);
-
-			Ti.UI.createAlertDialog({
-				title: 'You were too late or did not select an action',
-				message: 'Lock the phone or press Home within 5s after tapping the button.'
-			}).show();
-		});
-
-		// Not needed anymore
-		Ti.App.iOS.removeEventListener('usernotificationsettings', usernotificationsettings);
+	// Fired when a user selects an interactive notification action
+	Ti.App.iOS.addEventListener('localnotificationaction', function(e) {
+		log.args('Ti.App.iOS.addEventListener:localnotificationaction', e);
 	});
+
+	// Fired when a notification was received in the foreground or no action was selected
+	Ti.App.iOS.addEventListener('notification', function(e) {
+		log.args('Ti.App.iOS.addEventListener:notification', e);
+
+		Ti.UI.createAlertDialog({
+			title: 'You were too late or did not select an action',
+			message: 'Lock the phone or press Home within 5s after tapping the button.'
+		}).show();
+	});
+
+	var actions = [
+		Ti.App.iOS.createUserNotificationAction({
+			identifier: 'default',
+			title: 'Default'
+		})
+	];
+
+	// Notification behaviors are supported on iOS 9+
+	if (parseInt(Ti.Platform.version.split('.')[0], 10) >= 9) {
+		actions.push(
+			Ti.App.iOS.createUserNotificationAction({
+				identifier: 'input',
+				title: 'Input',
+
+				// Set the new behavior property to TEXT_INPUT
+				behavior: Ti.App.iOS.USER_NOTIFICATION_BEHAVIOR_TEXTINPUT,
+
+				// Set it to background so that it also works on Apple Watch
+				activationMode: Ti.App.iOS.USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND
+			})
+		);
+	}
 
 	// Register notification types and categories
 	Ti.App.iOS.registerUserNotificationSettings({
-		type: [Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT],
+		types: [
+			Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT
+		],
 		categories: [
 
 			// Create a category
 			Ti.App.iOS.createUserNotificationCategory({
 				identifier: 'sample',
-				actionsForDefaultContext: [
-
-					// Create an action
-					Ti.App.iOS.createUserNotificationAction({
-						identifier: 'input',
-						title: 'Input',
-
-						// Set the new behavior property to TEXT_INPUT
-						behavior: Ti.App.iOS.USER_NOTIFICATION_BEHAVIOR_TEXTINPUT,
-
-						// Set it to background so that it also works on Apple Watch
-						activationMode: Ti.App.iOS.USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND
-					}),
-
-					// Create an action
-					Ti.App.iOS.createUserNotificationAction({
-						identifier: 'default',
-						title: 'Default'
-					})
-				]
+				actionsForDefaultContext: actions
 			})
 		]
 	});

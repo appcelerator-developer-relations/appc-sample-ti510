@@ -15,8 +15,8 @@
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <ios>
 
-    <!-- this sample requires iOS 9.1 or later -->
-    <min-ios-ver>9.1</min-ios-ver>
+    <!-- we test this sample on iOS 8.4 and later -->
+    <min-ios-ver>8.4</min-ios-ver>
 
     <!-- Remove or set to false to disable auto layout (default) -->
     <use-autolayout>true</use-autolayout>
