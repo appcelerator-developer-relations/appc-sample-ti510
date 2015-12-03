@@ -6,7 +6,7 @@ The [Titanium 5.1.0 Sample App](https://github.com/appcelerator-developer-relati
 
 One of the most exciting new features is support for iPhone 6S 3D Touch with Peek & Pop and Home Screen Quick Actions. Exciting enough to deserve a dedicated [3D Touch Sample App](https://github.com/appcelerator-developer-relations/appc-sample-3dtouch).
 
-For a full list of changes see the [Release Notes](http://docs.appcelerator.com/platform/release-notes/?version=5.1.0.Beta).
+For a full list of changes see the [Release Notes](http://docs.appcelerator.com/platform/release-notes/?version=5.1.0.GA).
 
 ## Device Permissions
 This Release re-architected the way an application requests device permissions in order to support the new Android 6.0 model for requesting device permissions during runtime and to achieve parity between the Android and iOS platforms. Support for the Windows platform will be added in a later release.
