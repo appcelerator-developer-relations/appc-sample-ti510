@@ -17,7 +17,7 @@
 					Set via global in alloy.js for workaround
 					FIXME: https://jira.appcelerator.org/browse/TIMOB-20028
 					-->
-					<Picker class="tpad" type="Ti.UI.PICKER_TYPE_DATE" height="Alloy.Globals.pickerHeight" />
+					<Picker class="tpad" type="Ti.UI.PICKER_TYPE_DATE" height="50" />
 
 
 					<Label class="help tpad2">See how we use the new placeholder, keyboardType and returnKeyType properties in the controller:</Label>

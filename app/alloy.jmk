@@ -6,13 +6,9 @@ task('pre:load', function(event, logger) {
 		return;
 	}
 
-	var minVersion = splitVersion(event.minVersion);
-	var binPath = process.mainModule.filename;
-	var pkgPath = path.join(binPath, '..', '..', 'package.json');
-	var pkg = require(pkgPath);
-	var version = splitVersion(pkg.version);
+	var pkg = require(path.join(process.mainModule.filename, '..', '..', 'package.json'));
 
-	if (version[0] < minVersion[0] || version[1] < minVersion[1] || version[2] < minVersion[2]) {
+	if (versionStringToInt(pkg.version) < versionStringToInt(event.minVersion)) {
 		var error = 'This sample requires Alloy ' + minVersion.join('.') + ' or later';
 		var line = (new Array(error.length + 1)).join('-');
 
@@ -24,8 +20,8 @@ task('pre:load', function(event, logger) {
 	}
 });
 
-function splitVersion(version) {
-	return version.split(/[^0-9]+/).map(function(element) {
-		return parseInt(element, 10);
-	});
+function versionStringToInt(versionStr) {
+	return versionStr.split(/[^0-9]+/).reverse().reduce(function(previousValue, currentValue, currentIndex) {
+		return previousValue + Math.pow(100, currentIndex) * parseInt(currentValue, 10);
+	}, 0);
 }
