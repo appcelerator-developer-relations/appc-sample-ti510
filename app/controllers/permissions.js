@@ -198,7 +198,7 @@ function geolocation(e) {
 		if (locationServicesAuthorization === Ti.Geolocation.AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
 
-		} else if (locationServicesAuthorization === Ti.Calendar.AUTHORIZATION_DENIED) {
+		} else if (locationServicesAuthorization === Ti.Geolocation.AUTHORIZATION_DENIED) {
 			return dialogs.confirm({
 				title: 'You denied permission before',
 				message: 'We don\'t request again as that won\'t show the dialog anyway. Instead, press Yes to open the Settings App to grant permission there.',
