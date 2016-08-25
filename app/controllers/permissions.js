@@ -123,7 +123,7 @@ function contacts(e) {
 		if (contactsAuthorization === Ti.Contacts.AUTHORIZATION_RESTRICTED) {
 			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
 
-		} else if (contactsAuthorization === Ti.Calendar.AUTHORIZATION_DENIED) {
+		} else if (contactsAuthorization === Ti.Contacts.AUTHORIZATION_DENIED) {
 			return dialogs.confirm({
 				title: 'You denied permission before',
 				message: 'We don\'t request again as that won\'t show the dialog anyway. Instead, press Yes to open the Settings App to grant permission there.',
